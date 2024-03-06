@@ -416,8 +416,8 @@ namespace Kalkulator
             bool g = b1.zapeta;
             b1.zapeta = b2.zapeta;
             b2.zapeta = g;
-            int[] c = new int[32767];
-            int[] d = new int[32767];
+            List<int> c = new List<int>();
+            List<int> d = new List<int>();
             c = b1.ceo;
             b1.ceo = b2.ceo;
             b2.ceo = c;
@@ -427,6 +427,7 @@ namespace Kalkulator
             g = b1.negativan;
             b1.negativan = b2.negativan;
             b2.negativan = g;
+
         }
 
         public static string ToRoman(int number)
@@ -625,6 +626,36 @@ namespace Kalkulator
                 }
                 else deljenje.Text = "Nece da moze";
             }
+            else if (veliki.Checked)
+            {
+
+                if (b1.negativan && b2.negativan)
+                {
+                    sabiranje.Text = "-" + big.saberi(b1, b2);
+                    oduzimanje.Text = "-" + big.oduzmi(b2, b1);
+                    mnozenje.Text = big.mnozi(b1, b2);
+
+                }
+                else if (b1.negativan && !b2.negativan)
+                {
+                    sabiranje.Text = big.oduzmi(b2, b1);
+                    oduzimanje.Text = "-" + big.saberi(b1, b2);
+                    mnozenje.Text = "-" + big.mnozi(b1, b2);
+                }
+                else if (b2.negativan && !b1.negativan)
+                {
+                    sabiranje.Text = big.oduzmi(b1, b2);
+                    oduzimanje.Text = big.saberi(b1, b2);
+                    mnozenje.Text = "-" + big.mnozi(b1, b2);
+                }
+                else
+                {
+                    sabiranje.Text = big.saberi(b1, b2);
+                    oduzimanje.Text = big.oduzmi(b1, b2);
+                    mnozenje.Text = big.mnozi(b1, b2);
+
+                }
+            }
         }
 
         private void broj2_TextChanged(object sender, EventArgs e)
@@ -804,6 +835,36 @@ namespace Kalkulator
                 }
                 else deljenje.Text = "Nece da moze";
             }
+            else if (veliki.Checked)
+            {
+                if (b1.negativan && b2.negativan)
+                {
+                    sabiranje.Text = "-" + big.saberi(b1, b2);
+                    oduzimanje.Text = "-" + big.oduzmi(b2, b1);
+                    mnozenje.Text = big.mnozi(b1, b2);
+
+                }
+                else if (b1.negativan && !b2.negativan)
+                {
+                    sabiranje.Text = big.oduzmi(b2, b1);
+                    oduzimanje.Text = "-" + big.saberi(b1, b2);
+                    mnozenje.Text = "-" + big.mnozi(b1, b2);
+                }
+                else if (b2.negativan && !b1.negativan)
+                {
+                    sabiranje.Text = big.oduzmi(b1, b2);
+                    oduzimanje.Text = big.saberi(b1, b2);
+                    mnozenje.Text = "-" + big.mnozi(b1, b2);
+                }
+                else
+                {
+                    sabiranje.Text = big.saberi(b1, b2);
+                    oduzimanje.Text = big.oduzmi(b1, b2);
+                    mnozenje.Text = big.mnozi(b1, b2);
+
+                }
+
+            }
         }
 
         private void decimala_Click(object sender, EventArgs e)
@@ -824,12 +885,12 @@ namespace Kalkulator
             {
                 if (b1.zapeta == false)
                 {
-                    b1.ceo[b1.Ic] = 1;
+                    b1.ceo.Add(1);
                     b1.Ic++;
                 }
                 else
                 {
-                    b1.decimalni[b1.Id] = 1;
+                    b1.decimalni.Add(1);
                     b1.Id++;
                 }
                 broj1.Text += "1";
@@ -838,12 +899,12 @@ namespace Kalkulator
             {
                 if (b2.zapeta == false)
                 {
-                    b2.ceo[b2.Ic] = 1;
+                    b2.ceo.Add(1);
                     b2.Ic++;
                 }
                 else
                 {
-                    b2.decimalni[b2.Id] = 1;
+                    b2.decimalni.Add(1);
                     b2.Id++;
                 }
                 broj2.Text += "1";
@@ -856,12 +917,12 @@ namespace Kalkulator
             {
                 if (b1.zapeta == false)
                 {
-                    b1.ceo[b1.Ic] = 2;
+                    b1.ceo.Add(2);
                     b1.Ic++;
                 }
                 else
                 {
-                    b1.decimalni[b1.Id] = 2;
+                    b1.decimalni.Add(2);
                     b1.Id++;
                 }
                 broj1.Text += "2";
@@ -870,12 +931,12 @@ namespace Kalkulator
             {
                 if (b2.zapeta == false)
                 {
-                    b2.ceo[b2.Ic] = 2;
+                    b2.ceo.Add(2);
                     b2.Ic++;
                 }
                 else
                 {
-                    b2.decimalni[b2.Id] = 2;
+                    b2.decimalni.Add(2);
                     b2.Id++;
                 }
                 broj2.Text += "2";
@@ -888,12 +949,12 @@ namespace Kalkulator
             {
                 if (b1.zapeta == false)
                 {
-                    b1.ceo[b1.Ic] = 3;
+                    b1.ceo.Add(3);
                     b1.Ic++;
                 }
                 else
                 {
-                    b1.decimalni[b1.Id] = 3;
+                    b1.decimalni.Add(3);
                     b1.Id++;
                 }
                 broj1.Text += "3";
@@ -902,12 +963,12 @@ namespace Kalkulator
             {
                 if (b2.zapeta == false)
                 {
-                    b2.ceo[b2.Ic] = 3;
+                    b2.ceo.Add(3);
                     b2.Ic++;
                 }
                 else
                 {
-                    b2.decimalni[b2.Id] = 3;
+                    b2.decimalni.Add(3);
                     b2.Id++;
                 }
                 broj2.Text += "3";
@@ -920,12 +981,12 @@ namespace Kalkulator
             {
                 if (b1.zapeta == false)
                 {
-                    b1.ceo[b1.Ic] = 4;
+                    b1.ceo.Add(4);
                     b1.Ic++;
                 }
                 else
                 {
-                    b1.decimalni[b1.Id] = 4;
+                    b1.decimalni.Add(4);
                     b1.Id++;
                 }
                 broj1.Text += "4";
@@ -934,12 +995,12 @@ namespace Kalkulator
             {
                 if (b2.zapeta == false)
                 {
-                    b2.ceo[b2.Ic] = 4;
+                    b2.ceo.Add(4);
                     b2.Ic++;
                 }
                 else
                 {
-                    b2.decimalni[b2.Id] = 4;
+                    b2.decimalni.Add(4);
                     b2.Id++;
                 }
                 broj2.Text += "4";
@@ -952,12 +1013,12 @@ namespace Kalkulator
             {
                 if (b1.zapeta == false)
                 {
-                    b1.ceo[b1.Ic] = 5;
+                    b1.ceo.Add(5);
                     b1.Ic++;
                 }
                 else
                 {
-                    b1.decimalni[b1.Id] = 5;
+                    b1.decimalni.Add(5);
                     b1.Id++;
                 }
                 broj1.Text += "5";
@@ -966,12 +1027,12 @@ namespace Kalkulator
             {
                 if (b2.zapeta == false)
                 {
-                    b2.ceo[b2.Ic] = 5;
+                    b2.ceo.Add(5);
                     b2.Ic++;
                 }
                 else
                 {
-                    b2.decimalni[b2.Id] = 5;
+                    b2.decimalni.Add(5);
                     b2.Id++;
                 }
                 broj2.Text += "5";
@@ -984,12 +1045,12 @@ namespace Kalkulator
             {
                 if (b1.zapeta == false)
                 {
-                    b1.ceo[b1.Ic] = 6;
+                    b1.ceo.Add(6);
                     b1.Ic++;
                 }
                 else
                 {
-                    b1.decimalni[b1.Id] = 6;
+                    b1.decimalni.Add(6);
                     b1.Id++;
                 }
                 broj1.Text += "6";
@@ -998,12 +1059,12 @@ namespace Kalkulator
             {
                 if (b2.zapeta == false)
                 {
-                    b2.ceo[b2.Ic] = 6;
+                    b2.ceo.Add(6);
                     b2.Ic++;
                 }
                 else
                 {
-                    b2.decimalni[b2.Id] = 6;
+                    b2.decimalni.Add(6);
                     b2.Id++;
                 }
                 broj2.Text += "6";
@@ -1016,12 +1077,12 @@ namespace Kalkulator
             {
                 if (b1.zapeta == false)
                 {
-                    b1.ceo[b1.Ic] = 7;
+                    b1.ceo.Add(7);
                     b1.Ic++;
                 }
                 else
                 {
-                    b1.decimalni[b1.Id] = 7;
+                    b1.decimalni.Add(7);
                     b1.Id++;
                 }
                 broj1.Text += "7";
@@ -1030,12 +1091,12 @@ namespace Kalkulator
             {
                 if (b2.zapeta == false)
                 {
-                    b2.ceo[b2.Ic] = 7;
+                    b2.ceo.Add(7);
                     b2.Ic++;
                 }
                 else
                 {
-                    b2.decimalni[b2.Id] = 7;
+                    b2.decimalni.Add(7);
                     b2.Id++;
                 }
                 broj2.Text += "7";
@@ -1048,12 +1109,12 @@ namespace Kalkulator
             {
                 if (b1.zapeta == false)
                 {
-                    b1.ceo[b1.Ic] = 8;
+                    b1.ceo.Add(8);
                     b1.Ic++;
                 }
                 else
                 {
-                    b1.decimalni[b1.Id] = 8;
+                    b1.decimalni.Add(8);
                     b1.Id++;
                 }
                 broj1.Text += "8";
@@ -1062,12 +1123,12 @@ namespace Kalkulator
             {
                 if (b2.zapeta == false)
                 {
-                    b2.ceo[b2.Ic] = 8;
+                    b2.ceo.Add(8);
                     b2.Ic++;
                 }
                 else
                 {
-                    b2.decimalni[b2.Id] = 8;
+                    b2.decimalni.Add(8);
                     b2.Id++;
                 }
                 broj2.Text += "8";
@@ -1080,12 +1141,12 @@ namespace Kalkulator
             {
                 if (b1.zapeta == false)
                 {
-                    b1.ceo[b1.Ic] = 9;
+                    b1.ceo.Add(9);
                     b1.Ic++;
                 }
                 else
                 {
-                    b1.decimalni[b1.Id] = 9;
+                    b1.decimalni.Add(9);
                     b1.Id++;
                 }
                 broj1.Text += "9";
@@ -1094,12 +1155,12 @@ namespace Kalkulator
             {
                 if (b2.zapeta == false)
                 {
-                    b2.ceo[b2.Ic] = 9;
+                    b2.ceo.Add(9);
                     b2.Ic++;
                 }
                 else
                 {
-                    b2.decimalni[b2.Id] = 9;
+                    b2.decimalni.Add(9);
                     b2.Id++;
                 }
                 broj2.Text += "9";
@@ -1112,12 +1173,12 @@ namespace Kalkulator
             {
                 if (b1.zapeta == false)
                 {
-                    b1.ceo[b1.Ic] = 0;
+                    b1.ceo.Add(0);
                     b1.Ic++;
                 }
                 else
                 {
-                    b1.decimalni[b1.Id] = 0;
+                    b1.decimalni.Add(0);
                     b1.Id++;
                 }
                 broj1.Text += "0";
@@ -1126,12 +1187,12 @@ namespace Kalkulator
             {
                 if (b2.zapeta == false)
                 {
-                    b2.ceo[b2.Ic] = 0;
+                    b2.ceo.Add(0);
                     b2.Ic++;
                 }
                 else
                 {
-                    b2.decimalni[b2.Id] = 0;
+                    b2.decimalni.Add(0);
                     b2.Id++;
                 }
                 broj2.Text += "0";
@@ -1143,18 +1204,12 @@ namespace Kalkulator
             if (brojA.Checked)
             {
                 broj1.Text = "";
-                b1.zapeta = false;
-                b1.ceo = new int[32767];
-                b1.decimalni = new int[32767];
-                b1.negativan = false;
+                b1 = new big();
             }
             else if (brojB.Checked)
             {
                 broj2.Text = "";
-                b2.zapeta = false;
-                b2.ceo = new int[32767];
-                b2.decimalni = new int[32767];
-                b2.negativan = false;
+                b2 = new big();
             }
         }
 
@@ -1186,23 +1241,416 @@ namespace Kalkulator
 
         }
     }
+
     class big
     {
-        public int[] ceo;
-        public int[] decimalni;
+        public List<int> ceo;
+        public List<int> decimalni;
         public bool zapeta = false;
         public int Ic = 0;
         public int Id = 0;
         public bool negativan = false;
-        public big() 
+        public big()
         {
-            ceo = new int[32767];
-            decimalni = new int[32767];
+            ceo = new List<int>(524288);
+            this.ceo.Add(0);
+            decimalni = new List<int>(524288);
+            this.decimalni.Add(0);
         }
         public static string saberi(big A, big B)
         {
             big C = new big();
+            int p = 0;
+            if (A.decimalni.Count < B.decimalni.Count)
+            {
+                for (int i = 0; i < B.decimalni.Count; i++)
+                {
+                    C.decimalni.Add(0);
+                }
+                for (int i = B.decimalni.Count - 1; i >= A.decimalni.Count; i--)
+                {
+                    C.decimalni[i] = B.decimalni[i];
+                }
+                for (int i = A.decimalni.Count - 1; i >= 0; i--)
+                {
+                    int z = p + A.decimalni[i] + B.decimalni[i];
+                    if (z >= 10) { p = 1; z -= 10; } else p = 0; ;
+                    C.decimalni[i] = z;
+                }
+            }
+            else if (A.decimalni.Count > B.decimalni.Count)
+            {
+                for (int i = 0; i < A.decimalni.Count; i++)
+                {
+                    C.decimalni.Add(0);
+                }
+                for (int i = A.decimalni.Count - 1; i >= B.decimalni.Count; i--)
+                {
+                    C.decimalni[i] = A.decimalni[i];
+                }
+                for (int i = B.decimalni.Count - 1; i >= 0; i--)
+                {
+                    int z = p + B.decimalni[i] + A.decimalni[i];
+                    if (z >= 10) { p = 1; z -= 10; } else p = 0; ;
+                    C.decimalni[i] = z;
+                }
+            }
+            else if (B.decimalni.Count == A.decimalni.Count)
+            {
+                for (int i = 0; i < B.decimalni.Count; i++)
+                {
+                    C.decimalni.Add(0);
+                }
+                for (int i = B.decimalni.Count - 1; i >= 0; i--)
+                {
+                    int z = p + B.decimalni[i] + A.decimalni[i];
+                    if (z >= 10) { p = 1; z -= 10; } else p = 0;
+                    C.decimalni[i] = z;
+                }
+            }
+            if (C.decimalni[0] == 1) { p = 1; }
+            if (A.ceo.Count > B.ceo.Count)
+            {
+                C.ceo = new List<int>();
+                for (int i = 0; i < A.ceo.Count; i++)
+                {
+                    C.ceo.Add(0);
+                }
+                for (int i = 0; i < B.ceo.Count; i++)
+                {
+                    int z = p + A.ceo[A.ceo.Count - i-1] + B.ceo[B.ceo.Count - i-1];
+                    if (z >= 10) { p = 1; z -= 10; } else p = 0;
+                    C.ceo[C.ceo.Count-i-1] = z;
+                }
+                for (int i = 0; i <= A.ceo.Count - B.ceo.Count - 1; i++)
+                {
+                    int z = p + A.ceo[i];
+                    if (z >= 10) { p = 1; z -= 10; } else p = 0;
+                    C.ceo[i] = z; 
+                }
+            }
+            else if (A.ceo.Count < B.ceo.Count)
+            {
+                C.ceo = new List<int>();
+                for (int i = 0; i < B.ceo.Count; i++)
+                {
+                    C.ceo.Add(0);
+                }
+                for (int i = 0; i < A.ceo.Count; i++)
+                {
+                    int z = p + A.ceo[A.ceo.Count - i-1] + B.ceo[B.ceo.Count - i-1];
+                    if (z >= 10) { p = 1; z -= 10; } else p = 0;
+                    C.ceo[C.ceo.Count - i-1] = z;
+                }
+                for (int i = 1; i <= B.ceo.Count - A.ceo.Count - 1; i++)
+                {
+                    int z = p + B.ceo[i];
+                    if (z >= 10) { p = 1; z -= 10; } else p = 0;
+                    C.ceo[i] = z;
+
+                }
+            }
+            else if (A.ceo.Count == B.ceo.Count)
+            {
+                C.ceo = new List<int>();
+                for (int i = 0; i < B.ceo.Count; i++)
+                {
+                    C.ceo.Add(0);
+                }
+                for (int i = 0; i < A.ceo.Count; i++)
+                {
+                    int z = p + A.ceo[A.ceo.Count - i-1] + B.ceo[B.ceo.Count - i-1];
+                    if (z >= 10) { p = 1; z -= 10; } else p = 0;
+                    C.ceo[C.ceo.Count -i- 1] = z;
+                }
+            }
+            
+            if (p == 1) { C.ceo[0]++; }
             string rez = "";
+            for (int i = 0; i < C.ceo.Count; i++)
+            {
+                rez += C.ceo[i];
+            }
+            rez += ".";
+            for (int i = 1; i < C.decimalni.Count; i++)
+            {
+                rez += C.decimalni[i];
+            }
+            return rez;
+        }
+        public static string oduzmi(big A,big B)
+        {
+            bool neg = false;
+            big C = new big();
+            if (A.ceo.Count > B.ceo.Count)
+            {
+                int r = A.ceo.Count - B.ceo.Count;
+                C.ceo = new List<int>();
+                for (int i = 0; i < A.ceo.Count; i++)
+                {
+                    C.ceo.Add(0);
+                }
+                for (int i = 0; i < r; i++)
+                {
+                    C.ceo[i] = A.ceo[i];
+                }
+                for (int i = r; i < A.ceo.Count; i++)
+                {
+                    int z = 0;
+                    if (A.ceo[i] < B.ceo[i - r])
+                    {
+                        z = A.ceo[i] + 10 - B.ceo[i - r];
+                        C.ceo[i - 1]--;
+                    }
+                    else
+                    {
+                        z = A.ceo[i] - B.ceo[i - r];
+                    }
+                    C.ceo[i] = z;
+                }
+            }
+            else if (A.ceo.Count < B.ceo.Count)
+            {
+                neg = true;
+                int r = B.ceo.Count - A.ceo.Count;
+                C.ceo = new List<int>();
+                for (int i = 0; i < B.ceo.Count; i++)
+                {
+                    C.ceo.Add(0);
+                }
+                for (int i = 0; i < r; i++)
+                {
+                    C.ceo[i] = B.ceo[i];
+                }
+                C.ceo[0] -= C.ceo[0] * 2;
+                for (int i = r; i < B.ceo.Count; i++)
+                {
+                    int z = 0;
+                    if (A.ceo[i - r] > B.ceo[i])
+                    {
+                        z = B.ceo[i] + 10 - A.ceo[i - r];
+                        C.ceo[i - 1]--;
+                    }
+                    else
+                    {
+                        z = B.ceo[i] - A.ceo[i - r];
+                    }
+                    C.ceo[i] = z;
+
+                }
+            }
+            else if ((A.ceo.Count == B.ceo.Count)&&(A.ceo.Count>1))
+            {
+                C.ceo = new List<int>();
+                int j = 0;
+                while ((A.ceo[j] == B.ceo[j]) && (j < A.ceo.Count-1))
+                {
+                    j++;
+                }
+                if (j < A.ceo.Count)
+                {
+                    if (A.ceo[j] < B.ceo[j]) neg = true;
+                }
+                else
+                {
+                    j = 0;
+                    while ((A.decimalni[j] == B.decimalni[j]) || (j < A.decimalni.Count))
+                    {
+                        j++;
+                    }
+
+                    if (j < A.decimalni.Count)
+                    {
+                        if (A.decimalni[j] < B.decimalni[j]) neg = true;
+                    }
+                }
+                for (int i = 0; i < B.ceo.Count; i++)
+                {
+                    C.ceo.Add(0);
+                }
+                if (A.ceo[0] < B.ceo[0])
+                {
+                    C.ceo[0] = A.ceo[0] - B.ceo[0];
+                }
+                for (int i = 1; i < A.ceo.Count; i++)
+                {
+                    int z = 0;
+                    if (A.ceo[i] < B.ceo[i])
+                    {
+                        z = A.ceo[i] + 10 - B.ceo[i];
+                        C.ceo[i - 1]--;
+                    }
+                    else
+                    {
+                        z = A.ceo[i] - B.ceo[i];
+                    }
+                    C.ceo[i] = z;
+                }
+
+            }
+            if (A.decimalni[0] < B.decimalni[0])
+            {
+                C.ceo[C.ceo.Count - 1]--;
+                C.decimalni.Add(10 + A.decimalni[0] - B.decimalni[0]);
+            }
+            else
+            {
+                C.decimalni.Add(A.decimalni[0] - B.decimalni[0]);
+            }
+            if (A.decimalni.Count < B.decimalni.Count)
+            {
+                for (int i = 1; i < A.decimalni.Count; i++)
+                {
+                    C.decimalni.Add(0);
+                    int z = 0;
+                    if (A.decimalni[i] < B.decimalni[i])
+                    {
+                        z = A.decimalni[i] + 10 - B.decimalni[i];
+                        C.decimalni[i - 1]--;
+                    }
+                    else
+                    {
+                        z = A.decimalni[i] - B.decimalni[i];
+                    }
+                    C.decimalni[i] = z;
+                }
+                for (int i = A.decimalni.Count; i < B.decimalni.Count; i++)
+                {
+                    C.decimalni.Add(0);
+                    C.decimalni[i]=(10 - B.decimalni[i]);
+                    C.decimalni[i - 1]--;
+                }
+            }
+            if (A.decimalni.Count > B.decimalni.Count)
+            {
+                for (int i = 1; i < B.decimalni.Count; i++)
+                {
+                    C.decimalni.Add(0);
+                    int z = 0;
+                    if (A.decimalni[i] < B.decimalni[i])
+                    {
+                        z = A.decimalni[i] + 10 - B.decimalni[i];
+                        C.decimalni[i - 1]--;
+                    }
+                    else
+                    {
+                        z = A.decimalni[i] - B.decimalni[i];
+                    }
+                    C.decimalni[i] = z;
+                }
+                for (int i = B.decimalni.Count; i < A.decimalni.Count; i++)
+                {
+                    C.decimalni.Add(0);
+                    C.decimalni[i]=(A.decimalni[i]);
+                }
+            }
+            else if (A.decimalni.Count == B.decimalni.Count)
+            {
+                for (int i = 1; i < B.decimalni.Count; i++)
+                {
+                    C.decimalni.Add(0);
+                    int z = 0;
+                    if (A.decimalni[i] < B.decimalni[i])
+                    {
+                        z = A.decimalni[i] + 10 - B.decimalni[i];
+                        C.decimalni[i - 1]--;
+                    }
+                    else
+                    {
+                        z = A.decimalni[i] - B.decimalni[i];
+                    }
+                    C.decimalni[i] = z;
+                }
+                if (A.decimalni.Count > 1)
+                {
+                    if (A.decimalni[1] < B.decimalni[1])
+                    {
+                        C.ceo[C.ceo.Count - 1]--;
+                    }
+                }
+            }   
+            
+            string rez = "";
+            if (neg) { rez = oduzmi(B, A);
+                return "-" + rez;
+            }
+            
+            for (int i = 0; i < C.ceo.Count; i++)
+            {
+                rez += C.ceo[i];
+            }
+            rez += ".";
+            for (int i = 1; i < C.decimalni.Count; i++)
+            {
+                rez += C.decimalni[i];
+            }
+            return rez;
+        }
+        public static string mnozi(big A, big B)
+        {
+            List<int> C = new List<int>();
+            List<int> a = new List<int>();
+            List<int> b = new List<int>();
+            int p = 0;
+            for (int i = 0; i < A.ceo.Count; i++)
+            {
+                a.Add(A.ceo[i]);
+            }
+            if (A.decimalni.Count > 1)
+            {
+                for (int i = 1; i < A.decimalni.Count; i++)
+                {
+                    a.Add(A.decimalni[i]);
+                }
+            }
+            for (int i = 0; i < B.ceo.Count; i++)
+            {
+                b.Add(B.ceo[i]);
+            }
+            if (B.decimalni.Count > 1)
+            {
+                for (int i = 1; i < B.decimalni.Count; i++)
+                {
+                    b.Add(B.decimalni[i]);
+                }
+            }
+            for (int i = 0; i < a.Count+b.Count; i++)
+            {
+                C.Add(0);
+            }
+            if ((a.Count > 1) && (b.Count > 1))
+            {
+                for (int i = b.Count - 1; i >= 0; i--)
+                {
+                    for (int j = a.Count - 1; j >= 0; j--)
+                    {
+                        int z = p + a[j] * b[i];
+                        int c = z % 10;
+                        p = z / 10;
+                        C[i + j] += c;
+                    }
+                }
+                C[0] += p;
+            }
+            else
+            {
+                C = new List<int>();
+                C.Add(0);
+                return "0";
+            }
+            string rez = "";
+            for (int i = 0; i < C.Count-A.decimalni.Count - B.decimalni.Count + 1; i++)
+            {
+                rez += C[i];
+            }
+            rez += ".";
+            if ((A.decimalni.Count > 1) || (B.decimalni.Count > 1))
+            {
+                for (int i = C.Count - A.decimalni.Count - B.decimalni.Count + 1; i < C.Count; i++)
+                {
+                    rez += C[i];
+                }
+            }
             return rez;
         }
     }
