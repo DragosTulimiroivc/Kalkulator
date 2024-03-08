@@ -634,7 +634,7 @@ namespace Kalkulator
                     sabiranje.Text = "-" + big.saberi(b1, b2);
                     oduzimanje.Text = "-" + big.oduzmi(b2, b1);
                     mnozenje.Text = big.mnozi(b1, b2);
-                    //deljenje.Text = big.deli(b1, b2);
+                    deljenje.Text = big.deli(b1, b2);
 
                 }
                 else if (b1.negativan && !b2.negativan)
@@ -642,14 +642,14 @@ namespace Kalkulator
                     sabiranje.Text = big.oduzmi(b2, b1);
                     oduzimanje.Text = "-" + big.saberi(b1, b2);
                     mnozenje.Text = "-" + big.mnozi(b1, b2);
-                    //deljenje.Text = "-" + big.deli(b1, b2);
+                    deljenje.Text = "-" + big.deli(b1, b2);
                 }
                 else if (b2.negativan && !b1.negativan)
                 {
                     sabiranje.Text = big.oduzmi(b1, b2);
                     oduzimanje.Text = big.saberi(b1, b2);
                     mnozenje.Text = "-" + big.mnozi(b1, b2);
-                    //deljenje.Text = "-" + big.deli(b1, b2);
+                    deljenje.Text = "-" + big.deli(b1, b2);
                 }
                 else
                 {
@@ -846,7 +846,7 @@ namespace Kalkulator
                     sabiranje.Text = "-" + big.saberi(b1, b2);
                     oduzimanje.Text = "-" + big.oduzmi(b2, b1);
                     mnozenje.Text = big.mnozi(b1, b2);
-                   // deljenje.Text = big.deli(b1, b2);
+                    deljenje.Text = big.deli(b1, b2);
 
                 }
                 else if (b1.negativan && !b2.negativan)
@@ -854,14 +854,14 @@ namespace Kalkulator
                     sabiranje.Text = big.oduzmi(b2, b1);
                     oduzimanje.Text = "-" + big.saberi(b1, b2);
                     mnozenje.Text = "-" + big.mnozi(b1, b2);
-                 //   deljenje.Text = "-" + big.deli(b1, b2);
+                    deljenje.Text = "-" + big.deli(b1, b2);
                 }
                 else if (b2.negativan && !b1.negativan)
                 {
                     sabiranje.Text = big.oduzmi(b1, b2);
                     oduzimanje.Text = big.saberi(b1, b2);
                     mnozenje.Text = "-" + big.mnozi(b1, b2);
-                    //deljenje.Text = "-" + big.deli(b1, b2);
+                    deljenje.Text = "-" + big.deli(b1, b2);
                 }
                 else
                 {
