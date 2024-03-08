@@ -656,7 +656,7 @@ namespace Kalkulator
                     sabiranje.Text = big.saberi(b1, b2);
                     oduzimanje.Text = big.oduzmi(b1, b2);
                     mnozenje.Text = big.mnozi(b1, b2);
-                    //deljenje.Text = big.deli(b1, b2);
+                    deljenje.Text = big.deli(b1, b2);
 
                 }
             }
@@ -868,7 +868,7 @@ namespace Kalkulator
                     sabiranje.Text = big.saberi(b1, b2);
                     oduzimanje.Text = big.oduzmi(b1, b2);
                     mnozenje.Text = big.mnozi(b1, b2);
-                    //deljenje.Text = big.deli(b1, b2);
+                    deljenje.Text = big.deli(b1, b2);
                     
                 }
 
@@ -2037,14 +2037,44 @@ namespace Kalkulator
                 string Bc = uString(B.ceo);
                 string Bd = uString(B.decimalni);
                 Bd = Bd.Substring(1);
+                if (Bd == "") { Bd = "0"; }
                 string b = Bc + Bd;
                 List<int> Ac = A.ceo;
-                for (int i = 0; i < Bd.Length; i++)
+                /*for (int i = 0; i < Bd.Length; i++)
                 {
                     Ac.Add(0);
-                }
+                }*/
                 string a = uString(Ac);
+                if ((Bc == "0") && (Bd == "1")) return (Pomnozi(a, "10"));
+                if ((Bc == "0") && (Bd == "01")) return (Pomnozi(a, "100"));
+                if ((Bc == "0") && (Bd == "001")) return (Pomnozi(a, "1000"));
+                if ((Bc == "0") && (Bd == "0001")) return (Pomnozi(a, "10000"));
+                if ((Bc == "0") && (Bd == "00001")) return (Pomnozi(a, "10000"));
+                if ((Bc == "0") && (Bd == "000001")) return (Pomnozi(a, "100000"));
+                if ((Bc == "0") && (Bd == "0000001")) return (Pomnozi(a, "1000000"));
+                if ((Bc == "0") && (Bd == "00000001")) return (Pomnozi(a, "10000000"));
+                if ((Bc == "0") && (Bd == "000000001")) return (Pomnozi(a, "100000000"));
+                if ((Bc == "0") && (Bd == "0000000001")) return (Pomnozi(a, "1000000000"));
                 string c = Podeli(a, b);
+                if (c != "Ne mozete deliti sa 0")
+                {
+                    int e = c.IndexOf('.');
+                    if (e != -1)
+                    {
+                        c = c.Remove(e, 1);
+                    }
+                    if (e == -1)
+                    {
+                        for (int i = 0; i < Bd.Length; i++)
+                        {
+                            c += "0";
+                        }
+                    }
+                    else if (Bd.Length != 0)
+                    {
+                        c = c.Insert((e + Bd.Length), ".");
+                    }
+                }
                 return c;
             }
             else if (!B.zapeta)
@@ -2052,27 +2082,57 @@ namespace Kalkulator
                 string Ac = uString(A.ceo);
                 string Ad = uString(A.decimalni);
                 Ad = Ad.Substring(1);
+                if (Ad == "") { Ad = "0"; }
                 string a = Ac + Ad;
                 List<int> Bc = B.ceo;
-                for (int i = 0; i < Ad.Length; i++)
+                /*for (int i = 0; i < Ad.Length; i++)
                 {
                     Bc.Add(0);
-                }
+                }*/
                 string b = uString(Bc);
                 string c = Podeli(a, b);
+                if (c != "Ne mozete deliti sa 0")
+                {
+                    int e = c.IndexOf('.');
+                    if (e != -1)
+                    {
+                        c = c.Remove(e, 1);
+                    }
+                    if (e == -1)
+                    {
+                        c = c.Insert((c.Length-Ad.Length), ".");
+                    }
+                    else if (e > Ad.Length)
+                    {
+                        if (Ad.Length != 0)
+                        {
+                            c = c.Insert((e - Ad.Length), ".");
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < Ad.Length - e + 1; i++)
+                        {
+                            c = "0" + c;
+                        }
+                        c=c.Insert(1, ".");
+                    }
+                }
                 return c;
             }
             else
             {
                 string Ac = uString(A.ceo);
                 string Ad = uString(A.decimalni);
+                if (Ad == "") { Ad = "0"; }
                 Ad = Ad.Substring(1);
                 string a = Ac + Ad;
                 string Bc = uString(B.ceo);
                 string Bd = uString(B.decimalni);
                 Bd = Bd.Substring(1);
+                if (Bd == "") { Bd = "0"; }
                 string b = Bc + Bd;
-                if (a.Length > b.Length)
+                /*if (a.Length > b.Length)
                 {
                     for (int i = 0; i < a.Length - b.Length; i++)
                     {
@@ -2085,8 +2145,35 @@ namespace Kalkulator
                     {
                         a += '0';
                     }
-                }
+                }*/
                 string c = Podeli(a, b);
+                if (c != "Ne mozete deliti sa 0")
+                {
+                    int e = c.IndexOf(".");
+                    if (e != -1)
+                    {
+                        c = c.Remove(e, 1);
+                    }
+                    if ((Bd.Length != 0) && (Ad.Length != 0))
+                    {
+                        if (e == -1)
+                        {
+                            c = c.Insert(c.Length + Bd.Length - Ad.Length, ".");
+                        }
+                        else if (e + Bd.Length - Ad.Length > 0)
+                        {
+                            c = c.Insert(e + Bd.Length - Ad.Length, ".");
+                        }
+                        else if (Ad.Length >= e + Bd.Length)
+                        {
+                            for (int i = 0; i < Ad.Length - Bd.Length ; i++)
+                            {
+                                c = "0" + c;
+                            }
+                            c = c.Insert(1, ".");
+                        }
+                    }
+                }
                 return c;
             }
         }
@@ -2157,7 +2244,7 @@ namespace Kalkulator
         }
         public static string Podeli(string a, string b)
         {
-            if (b == "0") return "Ne mozete deliti sa 0";
+            if ((b == "0") || (b=="00") || (b == "000") || (b == "0000") || (b == "00000") || (b == "000000") || (b == "0000000") || (b == "00000000") || (b == "000000000") || (b == "0000000000") || (b == "00000000000") || (b == "000000000000") || (b == "0000000000000") || (b == "00000000000000") || (b == "000000000000000") || (b == "0000000000000000") || (b == "00000000000000000") || (b == "000000000000000000") || (b == "0000000000000000000") || (b == "00000000000000000000") || (b == "000000000000000000000") || (b == "0000000000000000000000") || (b == "00000000000000000000000") || (b == "000000000000000000000000") || (b == "0000000000000000000000000") || (b == "00000000000000000000000000") || (b == "000000000000000000000000000") || (b == "0000000000000000000000000000") || (b == "00000000000000000000000000000") || (b == "000000000000000000000000000000")) return "Ne mozete deliti sa 0";
             string rez = string.Empty;
             string kol = Kolicnik(a, b);
             string temp = Oduzmi(a, Pomnozi(kol, b));
