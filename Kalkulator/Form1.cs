@@ -2156,13 +2156,30 @@ namespace Kalkulator
                     }
                     if ((Bd.Length != 0) && (Ad.Length != 0))
                     {
-                        if (e == -1)
+                        if ((e == -1)&& (e + Bd.Length - Ad.Length < c.Length))
                         {
-                            c = c.Insert(c.Length + Bd.Length - Ad.Length, ".");
+                            if (Bd.Length < Ad.Length)
+                            {
+                                c = c.Insert(c.Length + Bd.Length - Ad.Length, ".");
+                            }
+                            else
+                            {
+                                for (int i = 0; i < Bd.Length - Ad.Length; i++)
+                                {
+                                    c = c + "0";
+                                }
+                            }
                         }
-                        else if (e + Bd.Length - Ad.Length > 0)
+                        else if ((e + Bd.Length - Ad.Length > 0)&&(e + Bd.Length - Ad.Length<c.Length))
                         {
                             c = c.Insert(e + Bd.Length - Ad.Length, ".");
+                        }
+                        else if(e + Bd.Length - Ad.Length > c.Length)
+                        {
+                            for (int i = 0; i < c.Length - e - Bd.Length + Ad.Length; i++)
+                            {
+                                c = c + "0";
+                            }
                         }
                         else if (Ad.Length >= e + Bd.Length)
                         {
